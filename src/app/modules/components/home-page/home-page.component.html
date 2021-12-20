@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"> Holaa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/mercancia']">Mercancia</a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+<div class="card bg-dark text-white">
+    <div class="card-header">Ingresar mercancia</div>
+    <div class="card-body" style="width: 45%;">
+        <div class="mb-3">
+            <label for="inputName" class="form-label">Nombre Producto</label>
+            <input type="text" class="form-control" [(ngModel)]="nombreProducto" id="inputName" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="inputCantidad" class="form-label">cantidad</label>
+            <input type="number" class="form-control" [(ngModel)]="cantidad" id="inputCantidad">
+        </div>
+        <div class="mb-3">
+            <label for="disabledSelect" class="form-label">usuario reporta</label>
+            <select id="disabledSelect" class="form-select" [(ngModel)]="usuario" (change)="metodoPrueba()">
+                  <option *ngFor="let user of lisUsuario" [ngValue]="user">{{user.nombre}}</option>
+                </select>
+        </div>
+        <!-- <div class="mb-3">
+                <label for="dateinput" class="form-label">fecha</label>
+                <input id="dateinput" type="date" min="2021-01-01">
+            </div> -->
+        <button (click)="createMercancia(usuario)" [attr.disabled]="nombreProducto == '' || usuario == undefined || cantidad == undefined ? false:null" type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</div>
+<ng-template #contentModal let-c="close" let-d="dismiss">
+    <app-modals [mensajeModal]="mensajeModal" [mercanciaResponse]="mercanciaResponse" (closeModal)="closeModalHome()"></app-modals>
+</ng-template>

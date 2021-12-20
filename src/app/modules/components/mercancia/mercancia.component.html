@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"> Holaa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/home-page']">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/mercancia']">Mercancia</a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha registro</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of listMercancia">
+            <th scope="row">1</th>
+            <td>{{item.nombreProducto | uppercase}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.fechaIngreso | date:'dd-MM-yyyy'}}</td>
+            <td>{{item.usuario.nombre}}</td>
+            <td>
+                <button (click)="editMercancia(item)" type="button" class="btn btn-primary">Modificar</button>
+                <button (click)="deleteMercancia(item.idmercancia)" type="button" class="btn btn-danger">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #contentModal let-c="close" let-d="dismiss">
+    <app-modals [mensajeModal]="mensajeModal" (closeModal)="closeModalHome()"></app-modals>
+</ng-template>
+
+<ng-template #contentModalEdit let-c="close" let-d="dismiss">
+    <app-modal-edit [mercanciaEdit]="mercanciaEdit" (closeModal)="closeModalHome()"></app-modal-edit>
+</ng-template>

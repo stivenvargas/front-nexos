@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modificar</h4>
+    <!--     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
+</div>
+<div class="modal-body">
+    <div class="mb-3">
+        <label for="inputName" class="form-label">Nombre Producto</label>
+        <input type="text" class="form-control" [(ngModel)]="mercanciaEdit.nombreProducto" id="inputName" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="inputCantidad" class="form-label">cantidad</label>
+        <input type="number" class="form-control" [(ngModel)]="mercanciaEdit.cantidad" id="inputCantidad">
+    </div>
+    <div class="mb-3">
+        <label for="disabledSelect" class="form-label">usuario reporta</label>
+        <select id="disabledSelect" class="form-select" [(ngModel)]="mercanciaEdit.usuario" (change)="metodoPrueba()">
+              <option *ngFor="let user of lisUsuario" [ngValue]="user">{{user.nombre}}</option>
+            </select>
+    </div>
+</div>
+<div class="modal-footer">
+    <button (click)="editMercancia()" type="button" class="btn btn-outline-dark">Ok</button>
+</div>
